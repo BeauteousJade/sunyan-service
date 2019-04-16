@@ -5,6 +5,8 @@ import com.cly.sunyan.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 @Repository
@@ -27,6 +29,14 @@ public class UserService {
     }
 
     public User login(String account, String password) {
-        return userDao.loginUser(account, password);
+        User user = userDao.loginUser(account, password);
+        if (user != null) {
+            ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            if (servletRequestAttributes != null) {
+                servletRequestAttributes.getRequest().getSession().setAttribute("account", user.getAccount());
+                return user;
+            }
+        }
+        return user;
     }
 }

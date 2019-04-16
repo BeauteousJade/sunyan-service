@@ -20,6 +20,7 @@ public class UserController {
         return userService.register(account, password);
     }
 
+    @PostMapping("/login")
     public User login(@Param("account") String account, @Param("password") String password) {
         return userService.login(account, password);
     }

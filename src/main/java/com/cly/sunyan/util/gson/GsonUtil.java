@@ -1,10 +1,10 @@
 package com.cly.sunyan.util.gson;
 
+import com.cly.sunyan.util.gson.type.ParameterizedTypeImpl;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.pby.gamstudy.util.gson.type.ParameterizedTypeImpl;
 
 import java.lang.reflect.Type;
 import java.util.List;

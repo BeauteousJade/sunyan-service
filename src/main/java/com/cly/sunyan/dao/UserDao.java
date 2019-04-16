@@ -11,7 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
 
-    @Insert("insert into user(account, password, time) select account, password, time from dual where account = #{account}")
+    @Insert("insert into user(account, userName, password, avatar,time) select #{account}, #{userName}, #{password}, #{avatar},#{time}" +
+            " from dual where not exists (select account from user where account = #{account})")
     int register(User user);
 
     @Select("select account, userName, time from user where account = #{account}")
